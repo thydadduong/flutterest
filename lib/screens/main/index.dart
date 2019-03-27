@@ -6,7 +6,7 @@ import 'package:flutterest/screens/main/profile/index.dart';
 
 class MainScreen extends StatefulWidget {
   MainScreen({Key key}) : super(key: key);
-  List<Widget> fragments = <Widget>[
+  final List<Widget> fragments = <Widget>[
     Home(),
     Following(),
     Notifications(),
@@ -17,18 +17,21 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreen extends State<MainScreen> {
-  int _selectedIndex = 1;
+  int _selectedIndex = 0;
   double appbarHeight = AppBar().preferredSize.height;
 
   @override
   Widget build(BuildContext context) {
-    print(appbarHeight);
     return Scaffold(
       appBar: AppBar(
         title: Container(
           child: RaisedButton(
+            padding: EdgeInsets.all(0),
             child: Row(
               children: <Widget>[
+                SizedBox(
+                  width: 12,
+                ),
                 Icon(Icons.search, color: Color(0xff787878)),
                 SizedBox(width: 8),
                 Expanded(
@@ -41,14 +44,19 @@ class _MainScreen extends State<MainScreen> {
                   ), */
                 ),
                 IconButton(
-                  icon: Icon(Icons.camera_alt),
+                  icon: Icon(
+                    Icons.camera_alt,
+                    color: Color(0xff787878),
+                  ),
+                  tooltip: 'Image search',
                   onPressed: () {},
-                )
+                ),
               ],
             ),
             elevation: 0,
             splashColor: Colors.transparent,
             // highlightColor: Colors.transparent,
+            highlightElevation: 0,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8.0)),
             onPressed: () {},
@@ -58,13 +66,11 @@ class _MainScreen extends State<MainScreen> {
           height: appbarHeight - 16.0,
         ),
         actions: <Widget>[
-          _selectedIndex != 3
-              ? IconButton(
-                  icon: Icon(Icons.message),
-                  tooltip: "Manage following",
-                  onPressed: () {},
-                )
-              : SizedBox(),
+          IconButton(
+            icon: Icon(Icons.message),
+            tooltip: "Manage following",
+            onPressed: () {},
+          ),
           _selectedIndex == 1
               ? IconButton(
                   icon: Icon(Icons.edit),
@@ -86,7 +92,11 @@ class _MainScreen extends State<MainScreen> {
                   onPressed: () {},
                 )
               : SizedBox(),
+          SizedBox(
+            width: 4
+          ),
         ],
+        elevation: 0,
       ),
       // AppBar(),
       body: Column(
