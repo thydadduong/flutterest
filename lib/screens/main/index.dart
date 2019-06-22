@@ -17,7 +17,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreen extends State<MainScreen> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 3;
   double appbarHeight = AppBar().preferredSize.height;
 
   @override
